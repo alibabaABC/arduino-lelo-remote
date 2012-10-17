@@ -1,0 +1,46 @@
+0000
+300F            SRES strobe: Soft reset
+
+0B0F 0A0F       FSCTRL1     IF frequency of 253.9 kHz
+0C0F 000F       FSCTRL0     No frequency offset (default)
+0D0F 5D0F       FREQ2       FREQ = 0x5d13b1 = 2420 MHz
+0E0F 130F       FREQ1
+0F0F B10F       FREQ0
+100F 2D0F       MDMCFG4     CHANBW = 541.666 kHz
+110F 3B0F       MDMCFG3     DRATE = 249.94 kBaud
+120F 730F       MDMCFG2     MSK modulation, 30/32 sync word bits
+130F 220F       MDMCFG1     FEC disabled, 2 preamble bytes
+140F F80F       MDMCFG0     CHANSPC = 199.951 kHz
+0A0F 000F       CHANNR      Channel number 0 (default)
+150F 000F       DEVIATN     MSK phase change duty cycle
+210F B60F       FREND1
+220F 100F       FREND0
+180F 180F       MCSM0       Auto calibrate, Poweron timeout
+190F 1D0F       FOCCFG
+1A0F 1C0F       BSCFG
+1B0F C70F       AGCTRL2
+1C0F 000F       AGCTRL1
+1D0F B00F       AGCTRL0
+230F EA0F       FSCAL3
+240F 0A0F       FSCAL2
+250F 000F       FSCAL1
+260F 110F       FSCAL0
+290F 590F       FSTEST      Test only (default)
+2C0F 880F       TEST2       Test settings (default)
+2D0F 310F       TEST1       Test settings (default)
+2E0F 0B0F       TEST0       Test settings (default)
+000F 290F       IOCFG2      GDO2 used as CHIP_RDYn (default)
+020F 060F       IOCFG0      GDO0 used as sync
+070F 0A0F       PKTCTRL1    Addr check, broadcast, CRC autoflush
+080F 040F       PKTCTRL0    No whitening, normal TX/RX mode, CRC on
+090F 010F       ADDR        Device address 0x01
+060F 090F       PKTLEN      Using 9-byte packet
+
+7E0F FF0F FF0F FF0F FF0F FF0F FF0F FF0F FF0F 
+                PATABLE     Maximum output power
+
+3A0F            SFRX        strobe: flush RX fifo
+3B0F            SFTX        strobe: flush TX fifo
+360F            SIDLE
+360F            SIDLE
+390F            SPWD        strobe: Enter power-down mode
