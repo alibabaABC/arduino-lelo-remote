@@ -35,9 +35,9 @@ public:
 private:
     int csn;
 
-    void transferDelay();
     void spiTable(prog_uchar *table);
     byte regRead(byte reg);
+    byte statusRead();
 };
 
 #endif

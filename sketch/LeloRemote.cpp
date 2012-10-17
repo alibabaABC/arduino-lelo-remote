@@ -12,12 +12,6 @@ LeloRemote::LeloRemote(int chipSelectPin)
     : csn(chipSelectPin) {}
 
 
-void LeloRemote::transferDelay()
-{
-    // Standard delay between SPI transfers
-    delayMicroseconds(100);
-}
-
 void LeloRemote::spiTable(prog_uchar *table)
 {
     while (1) {
@@ -25,15 +19,10 @@ void LeloRemote::spiTable(prog_uchar *table)
         if (!length)
             return;
 
-        transferDelay();
         digitalWrite(csn, LOW);
-        transferDelay();
         while (length--)
             SPI.transfer(pgm_read_byte_near(table++));
-        transferDelay();
         digitalWrite(csn, HIGH);
-
-        transferDelay();
     }
 }
 
@@ -46,16 +35,27 @@ byte LeloRemote::regRead(byte reg)
     return result;
 }   
 
+byte LeloRemote::statusRead()
+{
+    // Dummy read from register 0
+    digitalWrite(csn, LOW);
+    byte result = SPI.transfer(0x80);
+    digitalWrite(csn, HIGH);
+    return result;
+} 
+
 void LeloRemote::reset()
 {
     SPI.setBitOrder(MSBFIRST);
     SPI.setDataMode(SPI_MODE0);
     SPI.setClockDivider(SPI_CLOCK_DIV128);
 
-    // Let the chip power on fully
+    // Idle bus state
     pinMode(csn, OUTPUT);
     digitalWrite(csn, HIGH);
-    delay(1);
+    
+    // Poll for CHIP_RDYn
+    while (statusRead() & 0x80);
 
     // Table-driven initialization
     static prog_uchar init[] PROGMEM = {
@@ -124,7 +124,6 @@ void LeloRemote::txPacket(const Packet &p)
     while (length--)
         SPI.transfer(*(data++));
     digitalWrite(csn, HIGH);
-    transferDelay();
 
     // Trigger the transmit
     static prog_uchar trigger[] PROGMEM = {
