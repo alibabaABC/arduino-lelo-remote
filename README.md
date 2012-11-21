@@ -25,3 +25,10 @@ This project uses an Arduino Pro Mini and the LeloRemote Arduino library. Additi
  - The CC2500 radio
 
 I designed a 3D printable housing, designed to be printable on a Makerbot or similar printer. The original design source files for Blender are here, as are ready-to-print STL meshes.
+
+About
+-----
+
+Written by Micah Elizabeth Scott. Everything here is released under the CC-BY-SA license.
+
+http://creativecommons.org/licenses/by-sa/2.0/
