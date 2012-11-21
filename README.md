@@ -12,12 +12,12 @@ The library requires a CC2500 radio chip. Breakout boards for this chip are plen
 
 Take care that this is a 3.3v chip! If possible, use an Arduino variant with a 3.3v supply. If you must use a 5v Arduino, you _must_ power the CC2500 off a 3.3v regulator. If you're using an Arduino Uno, for example, there's already a 3.3v output pin that will work fine. To protect the 3.3v inputs on the CC2500, use 1K resistors in series with the MOSI, SCK, and SS pins.
 
-Sonar Remote
-------------
+"Vibeam" Sonar Remote
+---------------------
 
-The "sonartx" directory is a design for a portable remote control that uses a Parallax Ping sonar sensor as its input device.
+The Vibeam project (Vibrator + Beam) is a wireless hands-free vibrator controller based on the Parallax Ping sonar sensor. Source code and design files are in the "vibeam" folder.
 
-This project uses the LeloRemote Arduino library. Additionally, it needs:
+This project uses an Arduino Pro Mini and the LeloRemote Arduino library. Additionally, it needs:
 
  - A portable source of regulated 5V power. I used a cheap USB phone charger battery
  - The Parallax Ping sonar sensor
