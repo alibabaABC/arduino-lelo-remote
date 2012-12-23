@@ -1,6 +1,7 @@
 /*
- * Arduino sketch for the ViBeam remote.
- * 
+ * Arduino sketch for the original ViBeam remote, as described here:
+ * http://scanlime.org/2012/11/hacking-my-vagina/
+ *
  * Micah Elizabeth Scott <beth@scanlime.org>
  * http://creativecommons.org/licenses/by-sa/2.0/
  */

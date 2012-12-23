@@ -15,7 +15,7 @@ Take care that this is a 3.3v chip! If possible, use an Arduino variant with a 3
 Vibeam Sonar Remote, version 01
 -------------------------------
 
-The Vibeam project (Vibrator + Beam) is a wireless hands-free vibrator controller based on the Parallax Ping sonar sensor. Source code and design files are in the "vibeam_01" folder.
+The Vibeam project (Vibrator + Beam) is a wireless hands-free vibrator controller based on the Parallax Ping sonar sensor. Source code and design files are in the "vibeam01" folder.
 
 This project is described in more detail at: http://scanlime.org/2012/11/hacking-my-vagina/
 
