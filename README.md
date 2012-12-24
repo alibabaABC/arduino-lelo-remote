@@ -30,6 +30,17 @@ I designed a 3D printable housing, designed to be printable on a Makerbot or sim
 
 NOTE: The 4-digit serial LED module has been discontinued. It is optional, but this makes it hard to exactly reproduce the original project unless you have a stock of these old modules.
 
+Vibeam Sonar Remote, version 02
+-------------------------------
+
+This revision of the design is intended to reduce cost and remove dependencies on obsolete parts. This version consists of:
+
+ - SparkFun COM-11442 serial LED module with a built-in Arduino-compatible ATmega328: https://www.sparkfun.com/products/11442
+ - A cheaper sonar sensor, HC-SR04, available from multiple vendors on eBay.
+ - An amplified CC2500 radio module, XL2500-D03, also available from eBay.
+ - The same 5V USB battery pack used in version 01.
+
+
 About
 -----
 
