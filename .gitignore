@@ -1,4 +1,5 @@
 .DS_Store
+*.gcode
 *.blend1
 *.blend2
 *.blend3
