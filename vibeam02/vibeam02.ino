@@ -99,7 +99,6 @@ public:
 
     // Listen for an echo, with timeout
     unsigned long echo = pulseIn(rxPin, HIGH, LIMIT);
-Serial.println(echo);
 
     if (!echo)
       echo = LIMIT;
@@ -138,7 +137,7 @@ void setup()
   remote.reset();
 }
 
-void loop()
+void sonarLoop()
 {
   // At every loop iteration, take a sonar measurement and update the filter
   unsigned long range;
@@ -153,6 +152,20 @@ void loop()
   if (led.mode != 'L' || led.echoIndicator) {
     // Calculate new power level
     led.power = constrain(map(range, sonar.FAR, sonar.NEAR, 0, remote.MAX_POWER), 0, remote.MAX_POWER);
+  }
+}
+
+void loop()
+{
+  if (Serial.available()) {
+    // Serial port puts us in Remote mode
+    led.mode = 'R';
+    led.echoIndicator = false;
+    led.power = Serial.read();
+
+  } else if (led.mode != 'R') {
+    // If we aren't in remote mode, control is via sonar.
+    sonarLoop();
   }
 
   remote.txMotorPower(led.power);
