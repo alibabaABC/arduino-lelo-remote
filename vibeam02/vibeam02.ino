@@ -162,6 +162,9 @@ void loop()
     led.mode = 'R';
     led.echoIndicator = false;
     led.power = Serial.read();
+ 
+    // Send back a flow control token
+    Serial.write(0x01);
 
   } else if (led.mode != 'R') {
     // If we aren't in remote mode, control is via sonar.
