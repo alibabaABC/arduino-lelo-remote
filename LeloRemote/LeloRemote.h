@@ -11,6 +11,8 @@
 #include "Arduino.h"
 #include <avr/pgmspace.h>
 
+typedef const unsigned char prog_uchar;
+
 class LeloRemote
 {
 public:
