@@ -1,5 +1,5 @@
 #include <SPI.h>
-#include <LeloRemote.h>
+#include <LeloRemote_nrf52.h>
 
 LeloRemote remote;
 
