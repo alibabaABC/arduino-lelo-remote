@@ -5,13 +5,11 @@
  * Micah Elizabeth Scott <beth@scanlime.org>
  */
 
-#ifndef LeloRemote_h
-#define LeloRemote_h
+#ifndef LeloRemote_nrf52_h
+#define LeloRemote_nrf52_h
 
 #include "Arduino.h"
 #include <avr/pgmspace.h>
-
-typedef const unsigned char prog_uchar;
 
 class LeloRemote
 {
@@ -27,7 +25,7 @@ public:
         byte unk8;
     };
 
-    LeloRemote(int chipSelectPin = 10);
+    LeloRemote(int chipSelectPin = 29);
     void reset();
     void txPacket(const Packet &p);
     void txMotorPower(byte power);
