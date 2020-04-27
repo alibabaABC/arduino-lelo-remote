@@ -5,11 +5,11 @@
  * Micah Elizabeth Scott <beth@scanlime.org>
  */
 
-#ifndef LeloRemote_nrf52_h
-#define LeloRemote_nrf52_h
+#ifndef LeloRemote_esp32_h
+#define LeloRemote_esp32_h
 
 #include "Arduino.h"
-#include <avr/pgmspace.h>
+#include <pgmspace.h>
 
 class LeloRemote
 {
@@ -25,7 +25,7 @@ public:
         byte unk8;
     };
 
-    LeloRemote(int chipSelectPin = 29);
+    LeloRemote(int chipSelectPin = 5);
     void reset();
     void txPacket(const Packet &p);
     void txMotorPower(byte power);
