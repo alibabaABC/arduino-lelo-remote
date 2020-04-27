@@ -6,7 +6,7 @@
  */
 
 #include <SPI.h>
-#include "LeloRemote_nrf52.h"
+#include "LeloRemote_esp32.h"
 
 LeloRemote::LeloRemote(int chipSelectPin)
     : csn(chipSelectPin) {}
