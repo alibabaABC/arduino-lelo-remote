@@ -46,9 +46,9 @@ byte LeloRemote::statusRead()
 
 void LeloRemote::reset()
 {
-    SPI.setBitOrder(MSBFIRST);
-    SPI.setDataMode(SPI_MODE0);
-    SPI.setClockDivider(SPI_CLOCK_DIV128);
+    //SPI.setBitOrder(MSBFIRST);
+    //SPI.setDataMode(SPI_MODE0);
+    //SPI.setClockDivider(SPI_CLOCK_DIV128);
 
     // Idle bus state
     pinMode(csn, OUTPUT);
