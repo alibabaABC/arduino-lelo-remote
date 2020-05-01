@@ -25,7 +25,7 @@ public:
         byte unk8;
     };
 
-    LeloRemote(int chipSelectPin = 5);
+    LeloRemote(int chipSelectPin = 15);
     void reset();
     void txPacket(const Packet &p);
     void txMotorPower(byte power);
