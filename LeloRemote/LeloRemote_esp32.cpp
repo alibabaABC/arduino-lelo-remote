@@ -8,6 +8,9 @@
 #include <SPI.h>
 #include "LeloRemote_esp32.h"
 
+static const int spiClk = 1000000; // 1 MHz
+SPIClass * hspi = NULL;
+
 LeloRemote::LeloRemote(int chipSelectPin)
     : csn(chipSelectPin) {}
 
@@ -18,29 +21,34 @@ void LeloRemote::spiTable(prog_uchar *table)
         byte length = pgm_read_byte_near(table++);
         if (!length)
             return;
-
+        hspi->beginTransaction(SPISettings(spiClk, MSBFIRST, SPI_MODE0));
         digitalWrite(csn, LOW);
         while (length--)
-            SPI.transfer(pgm_read_byte_near(table++));
+            hspi->transfer(pgm_read_byte_near(table++));  
         digitalWrite(csn, HIGH);
+        hspi->endTransaction();
     }
 }
 
 byte LeloRemote::regRead(byte reg)
 {
+    hspi->beginTransaction(SPISettings(spiClk, MSBFIRST, SPI_MODE0));
     digitalWrite(csn, LOW);
-    SPI.transfer(0x80 | reg);
-    byte result = SPI.transfer(0);
+    hspi->transfer(0x80 | reg);
+    byte result = hspi->transfer(0);
     digitalWrite(csn, HIGH);
+    hspi->endTransaction();
     return result;
 }   
 
 byte LeloRemote::statusRead()
 {
     // Dummy read from register 0
+    hspi->beginTransaction(SPISettings(spiClk, MSBFIRST, SPI_MODE0));
     digitalWrite(csn, LOW);
-    byte result = SPI.transfer(0x80);
+    byte result = hspi->transfer(0x80);
     digitalWrite(csn, HIGH);
+    hspi->endTransaction();
     return result;
 } 
 
@@ -51,6 +59,9 @@ void LeloRemote::reset()
     //SPI.setClockDivider(SPI_CLOCK_DIV128);
 
     // Idle bus state
+    
+    hspi = new SPIClass(HSPI);
+    hspi->begin(); 
     pinMode(csn, OUTPUT);
     digitalWrite(csn, HIGH);
     
@@ -119,11 +130,13 @@ void LeloRemote::txPacket(const Packet &p)
     spiTable(prepare);
 
     // Write packet to TX FIFO
+    hspi->beginTransaction(SPISettings(spiClk, MSBFIRST, SPI_MODE0));
     digitalWrite(csn, LOW);
-    SPI.transfer(0x7F);
+    hspi->transfer(0x7F);
     while (length--)
-        SPI.transfer(*(data++));
+        hspi->transfer(*(data++));
     digitalWrite(csn, HIGH);
+    hspi->endTransaction();
 
     // Trigger the transmit
     static prog_uchar trigger[] PROGMEM = {
